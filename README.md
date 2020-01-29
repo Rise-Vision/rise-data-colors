@@ -1,8 +1,8 @@
-# Rise Data Theme [![CircleCI](https://circleci.com/gh/Rise-Vision/rise-data-theme/tree/master.svg?style=svg)](https://circleci.com/gh/Rise-Vision/rise-data-theme/tree/master) [![Coverage Status](https://coveralls.io/repos/github/Rise-Vision/rise-data-theme/badge.svg?branch=master)](https://coveralls.io/github/Rise-Vision/rise-data-theme?branch=master)
+# Rise Data Colors [![CircleCI](https://circleci.com/gh/Rise-Vision/rise-data-colors/tree/master.svg?style=svg)](https://circleci.com/gh/Rise-Vision/rise-data-colors/tree/master) [![Coverage Status](https://coveralls.io/repos/github/Rise-Vision/rise-data-colors/badge.svg?branch=master)](https://coveralls.io/github/Rise-Vision/rise-data-colors?branch=master)
 
 ## Introduction
 
-`rise-data-theme` is a Polymer 3 Web Component that provides alternative theme options for an HTML Template
+`rise-data-colors` is a Polymer 3 Web Component that provides a template a way to override the company branding base and accent colors with different colors. 
 
 ## DISCLAIMER
 
@@ -93,7 +93,7 @@ Run the following command in Terminal: `polymer serve`.
 Now in your browser, navigate to:
 
 ```
-http://127.0.0.1:8081/components/rise-data-theme/demo/src/rise-data-theme.html
+http://127.0.0.1:8081/components/rise-data-colors/demo/src/rise-data-colors.html
 ```
 
 ### Demo project

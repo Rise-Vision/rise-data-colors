@@ -2,13 +2,13 @@
 
 import { html } from "@polymer/polymer";
 import { RiseElement } from "rise-common-component/src/rise-element.js";
-import { version } from "./rise-data-theme-version.js";
+import { version } from "./rise-data-colors-version.js";
 
-export default class RiseDataTheme extends RiseElement {
+export default class RiseDataColors extends RiseElement {
 
   static get template() {
     // TODO: this is temporary for skeleton
-    return html`<h1>RISE DATE THEME</h1>`;
+    return html`<h1>RISE DATE COLORS</h1>`;
   }
 
   static get properties() {
@@ -64,4 +64,4 @@ export default class RiseDataTheme extends RiseElement {
   }
 }
 
-customElements.define("rise-data-theme", RiseDataTheme);
+customElements.define("rise-data-colors", RiseDataColors);
