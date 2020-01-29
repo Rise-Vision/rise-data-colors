@@ -1,28 +1,48 @@
 /* eslint-disable no-console, no-unused-vars */
 
-import { html } from "@polymer/polymer";
 import { RiseElement } from "rise-common-component/src/rise-element.js";
 import { version } from "./rise-data-colors-version.js";
 
 export default class RiseDataColors extends RiseElement {
 
-  static get template() {
-    // TODO: this is temporary for skeleton
-    return html`<h1>RISE DATE COLORS</h1>`;
-  }
-
   static get properties() {
-    return {};
+    return {
+      /**
+       * The base color. For example "rgba(235,235,235,1)"
+       */
+      base: {
+        type: String,
+        value: ""
+      },
+      /**
+       * The accent color. For example "rgba(125,125,125,1)"
+       */
+      accent: {
+        type: String,
+        value: ""
+      },
+      /**
+       * Determines whether to override Branding settings or not
+       */
+      override: {
+        type: Boolean,
+        value: false
+      }
+    };
   }
 
   // Each item of observers array is a method name followed by
   // a comma-separated list of one or more dependencies.
   static get observers() {
-    return [];
+    return [
+      "_reset(base, accent, override)"
+    ];
   }
 
   // Event name constants
-
+  static get EVENT_DATA_UPDATE() {
+    return "data-update";
+  }
 
   constructor() {
     super();
@@ -31,26 +51,18 @@ export default class RiseDataColors extends RiseElement {
     this._initialStart = true;
   }
 
-  ready() {
-    super.ready();
-
-    this.addEventListener( "rise-presentation-play", () => this._reset());
-    this.addEventListener( "rise-presentation-stop", () => this._stop());
-  }
-
   _reset() {
     if ( !this._initialStart ) {
-      this._stop();
       this._start();
     }
   }
 
-  _start() {
-    // TODO: coming soon
+  _sendColorsEvent( eventName, detail ) {
+    super._sendEvent( eventName, detail );
   }
 
-  _stop() {
-    // TODO: coming soon
+  _start() {
+    this._sendColorsEvent( RiseDataColors.EVENT_DATA_UPDATE, { base: this.base, accent: this.accent, override: this.override } );
   }
 
   _handleStart() {
