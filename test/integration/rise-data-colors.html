@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>rise-data-colors test</title>
+
+  <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+  <script src="../../node_modules/mocha/mocha.js"></script>
+  <script src="../../node_modules/chai/chai.js"></script>
+  <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
+  <script src="../../node_modules/sinon/pkg/sinon.js"></script>
+
+  <script type="text/javascript">
+    RisePlayerConfiguration = {
+      isConfigured: () => true
+    };
+  </script>
+
+  <script type="module" src="../../src/rise-data-colors.js"></script>
+</head>
+<body>
+<test-fixture id="test">
+  <template>
+    <rise-data-colors></rise-data-colors>
+  </template>
+</test-fixture>
+
+<script type="module">
+  suite("rise-data-colors", () => {
+    let sandbox = sinon.createSandbox();
+    let element, clock;
+
+    setup(() => {
+      RisePlayerConfiguration.Logger = {
+        info: () => {},
+        warning: () => {},
+        error: () => {}
+      };
+
+      RisePlayerConfiguration.isPreview = () => {
+        return false;
+      };
+
+      clock = sinon.useFakeTimers();
+
+      element = fixture("test");
+    });
+
+    teardown(()=>{
+      sandbox.restore();
+      clock.restore();
+    });
+
+    suite( "data event", () => {
+      test( "should receive data event immediately after component starts", (done) => {
+        const handler = function( evt ) {
+          assert.isObject( evt.detail );
+          assert.equal( evt.detail.override, false );
+          assert.equal( evt.detail.base, "" );
+          assert.equal( evt.detail.accent, "" );
+
+          done();
+        };
+
+        element.addEventListener( "data-update", handler );
+        element.dispatchEvent( new CustomEvent( "start" ) );
+      } );
+
+    } );
+
+  });
+</script>
+</body>
+</html>
