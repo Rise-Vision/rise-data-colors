@@ -42,7 +42,10 @@
 <script>
   function configureComponents() {
     const riseDataColors01 = document.querySelector('#rise-data-colors-01');
-    console.log('Rise components ready');
+
+    riseDataColors01.addEventListener( "data-update", evt => {
+      console.log( evt.detail );
+    } );
 
     // Uncomment if testing directly in browser
     // [ riseDataColors01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );
