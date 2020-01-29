@@ -47,7 +47,7 @@ jobs:
           VERSION=$(cat version-string/version)
           sed -i "
             s/__VERSION__/$VERSION/;
-          " src/rise-data-theme-version.js
+          " src/rise-data-colors-version.js
       - run: npm run build
       - persist_to_workspace:
           root: .
@@ -58,7 +58,7 @@ jobs:
     docker: &GCSIMAGE
       - image: jenkinsrise/cci-v2-launcher-electron:0.0.6
         environment:
-          COMPONENT_NAME: rise-data-theme
+          COMPONENT_NAME: rise-data-colors
           WIDGETS_BASE: gs://widgets.risevision.com
     steps:
       - run: mkdir -p ~/.ssh
