@@ -1,4 +1,4 @@
-# Demo for rise-data-theme
+# Demo for rise-data-colors
 
 ## Install polymer tools
 
@@ -49,7 +49,7 @@ cd build/prod
 python -m SimpleHTTPServer 8999
 ```
 
-Then go to http://localhost:8999/src/rise-data-theme.html in Chrome browser.
+Then go to http://localhost:8999/src/rise-data-colors.html in Chrome browser.
 
 #### In case you have Python 3 installed
 
@@ -75,7 +75,7 @@ domain of the published file must be risevision.com.
 
 Then create a schedule that points to the published file, for example:
 
-  http://widgets.risevision.com/staging/pages/2018.XX.XX.XX.XX/src/rise-data-theme.html
+  http://widgets.risevision.com/staging/pages/2018.XX.XX.XX.XX/src/rise-data-colors.html
 
 Note that this is an HTTP URL, as ChromeOS Player currently requires that.
 

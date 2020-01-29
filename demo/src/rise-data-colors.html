@@ -18,7 +18,7 @@
   </script>
   <script src="https://widgets.risevision.com/beta/common/config-test.min.js"></script>
   <script src="https://widgets.risevision.com/beta/common/common-template.min.js"></script>
-  <script src="http://localhost:63342/rise-data-theme/dist/rise-data-theme.js"></script>
+  <script src="https://widgets.risevision.com/beta/components/rise-data-colors/1/rise-data-colors.js"></script>
   <script>
     if (document.domain.indexOf("localhost") === -1) {
       try {
@@ -36,16 +36,16 @@
 
 <body>
 
-<rise-data-theme id="rise-data-theme-01">
-</rise-data-theme>
+<rise-data-colors id="rise-data-colors-01">
+</rise-data-colors>
 
 <script>
   function configureComponents() {
-    const riseDataTheme01 = document.querySelector('#rise-data-theme-01');
+    const riseDataColors01 = document.querySelector('#rise-data-colors-01');
     console.log('Rise components ready');
 
     // Uncomment if testing directly in browser
-    // [ riseDataTheme01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );
+    // [ riseDataColors01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );
   }
 
   window.addEventListener( "rise-components-ready", configureComponents );
