@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>rise-data-colors test</title>
+
+  <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+  <script src="../../node_modules/mocha/mocha.js"></script>
+  <script src="../../node_modules/chai/chai.js"></script>
+  <script src="../../node_modules/wct-mocha/wct-mocha.js"></script>
+  <script src="../../node_modules/sinon/pkg/sinon.js"></script>
+
+  <script type="text/javascript">
+    RisePlayerConfiguration = {
+      isConfigured: () => true
+    };
+  </script>
+
+  <script type="module" src="../../src/rise-data-colors.js"></script>
+</head>
+<body>
+<test-fixture id="test-block">
+  <template>
+    <rise-data-colors></rise-data-colors>
+  </template>
+</test-fixture>
+
+<script type="module">
+  suite("rise-data-colors", () => {
+    let sandbox = sinon.createSandbox();
+    let element, clock, riseElement;
+
+    setup(() => {
+      RisePlayerConfiguration.isPreview = () => {
+        return false;
+      };
+
+      RisePlayerConfiguration.Logger = {
+        info: () => {},
+        warning: () => {},
+        error: sinon.spy()
+      };
+
+      clock = sinon.useFakeTimers();
+
+      element = fixture("test-block");
+
+      riseElement = element.__proto__.__proto__;
+
+      sandbox.spy(riseElement, '_sendEvent');
+      sandbox.stub(riseElement, '_setUptimeError');
+      sandbox.stub(riseElement, 'log');
+    });
+
+    teardown(()=>{
+      sandbox.restore();
+      clock.restore();
+    });
+
+    suite("properties", () => {
+      test("should set default for override", () => {
+        assert.equal(element.override, false);
+      });
+    });
+
+    suite( "_reset", () => {
+      setup( () => {
+        sandbox.stub( element, "_start" );
+      } );
+
+      test( "should not execute reset when an initial start still pending", () => {
+        element._reset();
+
+        assert.isFalse( element._start.calledOnce );
+      } );
+
+      test( "should execute reset when not the initial start", () => {
+        element._initialStart = false;
+        element._reset();
+
+        assert.isTrue( element._start.calledOnce );
+      } );
+    } );
+
+    suite( "_start", () => {
+
+      test( "should send data-update event", ( done ) => {
+        const listener = ( evt ) => {
+          assert.deepEqual( evt.detail, {
+            base: element.base,
+            accent: element.accent,
+            override: false
+          } );
+
+          element.removeEventListener( "data-update", listener );
+          done();
+        };
+
+        element.addEventListener( "data-update", listener );
+        element.base = "rgba(235,235,235,1)";
+        element.accent = "rgba(125,125,125,1)";
+        element._start();
+      } );
+
+    } );
+
+    suite( "_handleStart", () => {
+
+      setup( () => {
+        sandbox.stub( element, "_start" );
+      } );
+
+      test( "should call _start() when this is the initial 'start'", () => {
+        const event = new CustomEvent( "start" );
+        element.dispatchEvent( event );
+
+        assert.isTrue( element._start.calledOnce );
+        assert.isFalse( element._initialStart, "_initialStart set to false" );
+      } );
+
+      test( "should not call _start() when this is not the initial start", () => {
+        element._initialStart = false;
+
+        const event = new CustomEvent( "start" );
+        element.dispatchEvent( event );
+
+        assert.isFalse( element._start.called );
+      } );
+
+    } );
+
+    suite( "_sendThemeEvent", () => {
+      test( "should process event to be sent", () => {
+        element._sendColorsEvent( 'data-update', 'test' );
+
+        assert.isTrue( riseElement._sendEvent.calledWith( 'data-update', 'test' ) );
+      } );
+    } );
+
+  });
+</script>
+</body>
+</html>
