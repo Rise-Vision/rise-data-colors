@@ -34,9 +34,9 @@ The output is created into the build/prod directory.
 
 #### Use local web server and run directly in Chrome browser
 
-To do this, first uncomment this line in src/rise-data-counter.html
+To do this, first uncomment this line in src/rise-data-colors.html
 
-`// [ riseDataTheme01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );`
+`// [ riseDataColors01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );`
 
 and run:
 
@@ -75,7 +75,7 @@ domain of the published file must be risevision.com.
 
 Then create a schedule that points to the published file, for example:
 
-  http://widgets.risevision.com/staging/pages/2018.XX.XX.XX.XX/src/rise-data-colors.html
+  http://widgets.risevision.com/staging/pages/2020.XX.XX.XX.XX/src/rise-data-colors.html
 
 Note that this is an HTTP URL, as ChromeOS Player currently requires that.
 
