@@ -30,25 +30,37 @@
     }
   </script>
   <style>
-    /* TODO: coming soon */
+    .txtarea {
+      resize: none;
+      border : 1px solid black;
+      width: 300px;
+      height: 200px;
+    }
   </style>
 </head>
 
 <body>
 
-<rise-data-colors id="rise-data-colors-01">
+<rise-data-colors id="rise-data-colors-01" override="true" base="rgba(135,135,135,0.75)" accent="#FCFCFC">
 </rise-data-colors>
+
+<div id="dataOutput">
+  <p>Data</p>
+  <textarea cols="15" rows="15" class="txtarea"></textarea>
+</div>
 
 <script>
   function configureComponents() {
     const riseDataColors01 = document.querySelector('#rise-data-colors-01');
 
     riseDataColors01.addEventListener( "data-update", evt => {
-      console.log( evt.detail );
+      const dataOutput = document.querySelector( "#dataOutput textarea" );
+
+      dataOutput.value = JSON.stringify(evt.detail);
     } );
 
     // Uncomment if testing directly in browser
-    // [ riseDataColors01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );
+    //[ riseDataColors01 ].forEach( el => RisePlayerConfiguration.Helpers.sendStartEvent( el ) );
   }
 
   window.addEventListener( "rise-components-ready", configureComponents );
