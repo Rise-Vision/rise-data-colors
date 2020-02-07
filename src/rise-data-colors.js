@@ -39,11 +39,6 @@ export default class RiseDataColors extends RiseElement {
     ];
   }
 
-  // Event name constants
-  static get EVENT_DATA_UPDATE() {
-    return "data-update";
-  }
-
   constructor() {
     super();
 
