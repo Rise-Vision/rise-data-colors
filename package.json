@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Rise colors component",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
+    "preinstall": "npx npm-force-resolutions || true",
     "prebuild": "eslint .",
     "build": "polymer build && ./node_modules/rise-common-component/scripts/extract-source.sh rise-data-colors",
     "pretty": "eslint . --fix",
