@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Rise-Vision/rise-data-colors/#readme",
   "dependencies": {
-    "rise-common-component": "git://github.com/Rise-Vision/rise-common-component.git#v1.5.2"
+    "rise-common-component": "git://github.com/Rise-Vision/rise-common-component.git#v1.6.1"
   },
   "devDependencies": {
     "@polymer/test-fixture": "^4.0.2",
