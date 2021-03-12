@@ -1,6 +1,6 @@
 {
   "name": "rise-data-colors",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Rise colors component",
   "scripts": {
     "prebuild": "eslint .",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Rise-Vision/rise-data-colors/#readme",
   "dependencies": {
-    "rise-common-component": "git://github.com/Rise-Vision/rise-common-component.git#v1.6.1"
+    "rise-common-component": "git://github.com/Rise-Vision/rise-common-component.git#v1.9.2"
   },
   "devDependencies": {
     "@polymer/test-fixture": "^4.0.2",
